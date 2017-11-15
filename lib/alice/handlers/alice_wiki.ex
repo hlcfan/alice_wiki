@@ -45,23 +45,49 @@ defmodule Alice.Handlers.AliceWiki do
     {:error, Poison.Parser.parse!(body)}
   end
 
-  defp build_reply(post) do
-    {_, body} = post
+  defp build_reply({_, body}) do
     # IEx.pry
-    if length(Enum.at(body, 1)) > 0 do
-      title = hd(Enum.at(body, 1))
-      desc = hd(Enum.at(body, 2))
-      link = hd(Enum.at(body, 3))
-      other_links = Enum.join(Enum.take(Enum.at(body, 3), 5), "\n")
-
+    if entry_found?(body) do
       [
-        link,
-        ">#{desc}",
-        "Others:\n#{other_links}"
+        link(body),
+        ">#{desc(body)}",
+        "Others:\n#{other_links(body)}"
       ]
       |> Enum.join("\n")
     else
       "No Wikipedia entry found for '#{Enum.at(body, 0)}'"
     end
+  end
+
+  defp entry_found?(body) do
+    body
+    |> Enum.at(1)
+    |> length
+    |> Kernel.>(0)
+  end
+
+  defp desc(body) do
+    body
+    |> Enum.at(2)
+    |> hd
+  end
+
+  defp link(body) do
+    body
+    |> Enum.at(3)
+    |> hd
+  end
+
+  defp other_links(body) do
+    body
+    |> Enum.at(3)
+    |> Enum.take(5)
+    |> Enum.map(&process_link/1)
+    |> Enum.join("\n")
+  end
+
+  def process_link(link) do
+    link
+    |> String.slice(8..-1)
   end
 end
