@@ -1,6 +1,6 @@
 # AliceWiki
 
-**TODO: Add description**
+**is a handler for [Alice](https://github.com/alice-bot/alice) that returns a requested Wikipedia article**
 
 ## Installation
 
