@@ -5,7 +5,7 @@ use Mix.Config
 config :alice,
   api_key: System.get_env("SLACK_API_TOKEN"),
   state_backend: :redis,
-  redis: "redis://localhost:6379" #System.get_env("REDIS_URL")
+  redis: System.get_env("REDIS_URL")
 
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
