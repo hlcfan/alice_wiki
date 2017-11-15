@@ -7,6 +7,7 @@ defmodule AliceWiki.Mixfile do
       version: "0.1.0",
       elixir: "~> 1.5",
       description: "Handler for Alice that returns a requested Wikipedia article",
+      package: package(),
       start_permanent: Mix.env == :prod,
       deps: deps()
     ]
@@ -18,12 +19,12 @@ defmodule AliceWiki.Mixfile do
       extra_applications: [:logger],
       # applications: [:alice_wiki]
       mod: {
-      Alice, %{
-        handlers: [
-          Alice.Handlers.AliceWiki
-        ]
+        Alice, %{
+          handlers: [
+            Alice.Handlers.AliceWiki
+          ]
+        }
       }
-    }
     ]
   end
 
