@@ -50,7 +50,6 @@ defmodule Alice.Handlers.AliceWiki do
     if entry_found?(body) do
       [
         link(body),
-        ">#{desc(body)}",
         "Others:\n#{other_links(body)}"
       ]
       |> Enum.join("\n")
@@ -64,12 +63,6 @@ defmodule Alice.Handlers.AliceWiki do
     |> Enum.at(1)
     |> length
     |> Kernel.>(0)
-  end
-
-  defp desc(body) do
-    body
-    |> Enum.at(2)
-    |> hd
   end
 
   defp link(body) do
