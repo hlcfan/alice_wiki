@@ -14,7 +14,17 @@ defmodule AliceWiki.Mixfile do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger],
+      # applications: [:alice_wiki]
+      mod: {
+      Alice, %{
+        handlers: [
+          # Alice.Handlers.Random,
+          # Alice.Handlers.AgainstHumanity,
+          Alice.Handlers.AliceWiki
+        ]
+      }
+    }
     ]
   end
 
