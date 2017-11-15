@@ -11,7 +11,6 @@ defmodule Alice.Handlers.AliceWiki do
   route   ~r/wiki (?<term>.+)/i, :search
 
   def search(conn) do
-    IO.puts "========"
     conn
     |> get_term()
     |> get_wiki()
@@ -50,7 +49,6 @@ defmodule Alice.Handlers.AliceWiki do
     {_, body} = post
     # IEx.pry
     if length(Enum.at(body, 1)) > 0 do
-    
       title = hd(Enum.at(body, 1))
       desc = hd(Enum.at(body, 2))
       link = hd(Enum.at(body, 3))
@@ -62,18 +60,8 @@ defmodule Alice.Handlers.AliceWiki do
         "Others:\n#{other_links}"
       ]
       |> Enum.join("\n")
+    else
+      "No Wikipedia entry found for '#{Enum.at(body, 0)}'"
     end
-  end
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> AliceWiki.hello
-      :world
-
-  """
-  def hello do
-    :world
   end
 end
