@@ -9,7 +9,7 @@ defmodule Alice.Handlers.Wiki do
 
   @url "https://en.wikipedia.org/w/api.php"
 
-  route ~r/wiki\s+me\s+(?<term>.+)/i, :fetch_wiki
+  route ~r/^wiki\s+me\s+(?<term>.+)/i, :fetch_wiki
 
   @doc "`wiki me ____` - attempts to fetch a wikipedia item."
   def fetch_wiki(conn) do
