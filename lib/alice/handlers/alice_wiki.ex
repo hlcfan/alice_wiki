@@ -7,6 +7,8 @@ defmodule Alice.Handlers.AliceWiki do
 
   use Alice.Router
 
+  @url "https://en.wikipedia.org/w/api.php"
+
   command ~r/wiki\s+me\s+(?<term>.+)/i, :fetch_wiki
 
   def fetch_wiki(conn) do
@@ -32,7 +34,7 @@ defmodule Alice.Handlers.AliceWiki do
   end
 
   defp wiki_url(term) do
-    "https://en.wikipedia.org/w/api.php?search=#{term}&action=opensearch&format=json"
+    URI.encode("#{@url}?search=#{term}&action=opensearch&format=json")
   end
 
   defp handle_json({:ok, %{status_code: 200, body: body}}) do
