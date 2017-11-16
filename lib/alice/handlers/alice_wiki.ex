@@ -2,7 +2,7 @@ require IEx;
 
 defmodule Alice.Handlers.AliceWiki do
   @moduledoc """
-  Documentation for AliceWiki.
+  This handler will allow Alice look up wikipedia items.
   """
 
   use Alice.Router
@@ -11,6 +11,7 @@ defmodule Alice.Handlers.AliceWiki do
 
   route ~r/wiki\s+me\s+(?<term>.+)/i, :fetch_wiki
 
+  @doc "`wiki me ____` - attempts to fetch a wikipedia item."
   def fetch_wiki(conn) do
     conn
     |> get_term()
@@ -51,8 +52,7 @@ defmodule Alice.Handlers.AliceWiki do
       [
         link(body),
         "Others:\n#{other_links(body)}"
-      ]
-      |> Enum.join("\n")
+      ] |> Enum.join("\n")
     else
       "No Wikipedia entry found for '#{Enum.at(body, 0)}'"
     end
