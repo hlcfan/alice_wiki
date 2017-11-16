@@ -7,10 +7,9 @@ defmodule Alice.Handlers.AliceWiki do
 
   use Alice.Router
 
-  command ~r/wiki (?<term>.+)/i, :search
-  route   ~r/wiki (?<term>.+)/i, :search
+  command ~r/wiki\s+me\s+(?<term>.+)/i, :fetch_wiki
 
-  def search(conn) do
+  def fetch_wiki(conn) do
     conn
     |> get_term()
     |> get_wiki()
