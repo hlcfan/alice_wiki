@@ -75,6 +75,7 @@ defmodule Alice.Handlers.AliceWiki do
     body
     |> Enum.at(3)
     |> Enum.take(5)
+    |> Enum.slice(1..-1)
     |> Enum.map(&process_link/1)
     |> Enum.join("\n")
   end
