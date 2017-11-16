@@ -4,7 +4,7 @@ defmodule AliceWiki.Mixfile do
   def project do
     [
       app: :alice_wiki,
-      version: "0.1.1",
+      version: "1.0.0",
       elixir: "~> 1.5",
       description: "Handler for Alice that returns a requested Wikipedia article",
       package: package(),
@@ -21,7 +21,7 @@ defmodule AliceWiki.Mixfile do
       mod: {
         Alice, %{
           handlers: [
-            Alice.Handlers.AliceWiki
+            Alice.Handlers.Wiki
           ]
         }
       }

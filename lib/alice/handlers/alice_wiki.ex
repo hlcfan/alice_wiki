@@ -1,6 +1,6 @@
-require IEx;
+# require IEx;
 
-defmodule Alice.Handlers.AliceWiki do
+defmodule Alice.Handlers.Wiki do
   @moduledoc """
   This handler will allow Alice look up wikipedia items.
   """
