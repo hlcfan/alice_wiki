@@ -22,7 +22,6 @@ defmodule Alice.Handlers.AliceWiki do
     conn
     |> Alice.Conn.last_capture()
     |> String.downcase()
-    |> String.replace(~r/[_\s]+/, "")
     |> String.trim()
   end
 
