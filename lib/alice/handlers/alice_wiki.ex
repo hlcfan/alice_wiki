@@ -51,7 +51,7 @@ defmodule Alice.Handlers.AliceWiki do
     if entry_found?(body) do
       [
         link(body),
-        "Others:\n#{other_links(body)}"
+        other_links(body)
       ] |> Enum.join("\n")
     else
       "No Wikipedia entry found for '#{Enum.at(body, 0)}'"
@@ -72,12 +72,21 @@ defmodule Alice.Handlers.AliceWiki do
   end
 
   defp other_links(body) do
+    links = filter_links(body)
+
+    if length(links) > 0 do
+      ["Others:"]
+      |> Enum.concat(links)
+      |> Enum.join("\n")
+    end
+  end
+
+  defp filter_links(body) do
     body
     |> Enum.at(3)
     |> Enum.take(5)
     |> Enum.slice(1..-1)
     |> Enum.map(&process_link/1)
-    |> Enum.join("\n")
   end
 
   def process_link(link) do
