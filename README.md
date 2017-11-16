@@ -10,7 +10,7 @@ by adding `alice_wiki` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:alice_wiki, "~> 0.1.0"}
+    {:alice_wiki, "~> 1.0.0"}
   ]
 end
 ```
